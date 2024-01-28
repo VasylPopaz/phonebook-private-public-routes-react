@@ -1,38 +1,54 @@
-import { ToastContainer } from 'react-toastify';
-import { Section, Filter, Contacts, Phonebook, Loader } from 'components';
 import 'react-toastify/dist/ReactToastify.css';
-import { Container, StyledTitle } from './App.styled';
-import { useSelector } from 'react-redux';
-import {
-  selectContacts,
-  selectError,
-  selectFilteredContacts,
-  selectIsLoading,
-} from 'state/selectors';
+import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import Home from 'pages/Home';
+import Register from 'pages/Register';
+import Login from 'pages/Login';
+import Contacts from 'pages/Contacts';
+import { refreshCurrentUser } from 'state/auth/authOperations';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { PublicRoute } from 'components/PublicRoute';
+import { useAuth } from 'hooks/useAuth';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 
 export function App() {
-  const contacts = useSelector(selectContacts);
-  const filteredContacts = useSelector(selectFilteredContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  return (
-    <>
-      <Container>
-        <Section title="Phonebook">
-          <Phonebook />
-        </Section>
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-        <Section title="Contacts">
-          <Filter />
-          <Contacts />
-          {contacts.length && !filteredContacts.length ? (
-            <StyledTitle>No matches!</StyledTitle>
-          ) : null}
-        </Section>
-      </Container>
+  useEffect(() => {
+    dispatch(refreshCurrentUser());
+  }, [dispatch]);
+
+  return (
+    !isRefreshing && (
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute redirectTo="/contacts" component={<Register />} />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute redirectTo="/contacts" component={<Login />} />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+        </Route>
+      </Routes>
+      /*
       {error && <StyledTitle>{error}!</StyledTitle>}
       {isLoading && <Loader />}
-      <ToastContainer autoClose={2000} />
-    </>
+      <ToastContainer autoClose={2000} /> */
+    )
   );
 }

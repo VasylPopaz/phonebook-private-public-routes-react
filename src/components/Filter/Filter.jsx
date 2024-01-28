@@ -1,16 +1,15 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { FormInput, FormLabel } from 'components/Phonebook/Phonebook.styled';
-import { changeFilter } from 'state/filterSlice';
+import { changeFilter } from 'state/contacts/contactsSlice';
 
-export const Filter = ({ onChange }) => {
+export const Filter = () => {
   const dispatch = useDispatch();
   const { register } = useForm();
 
   return (
-    <FormLabel>
+    <label>
       Find contacts by name
-      <FormInput
+      <input
         {...register('filter', {
           onChange: event => {
             dispatch(changeFilter(event.target.value.trim()));
@@ -18,6 +17,6 @@ export const Filter = ({ onChange }) => {
         })}
         type="text"
       />
-    </FormLabel>
+    </label>
   );
 };

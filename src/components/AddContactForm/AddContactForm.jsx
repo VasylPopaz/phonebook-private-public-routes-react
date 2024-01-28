@@ -1,11 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { selectContacts } from 'state/selectors';
-import { addContact } from 'state/operations';
-import { AddButton, Form, FormInput, FormLabel } from './Phonebook.styled';
+import { selectContacts } from 'state/contacts/contactsSelectors';
+import { addContact } from 'state/contacts/contactsOperations';
 
-export function Phonebook() {
+export function AddContactForm() {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
@@ -21,16 +20,16 @@ export function Phonebook() {
   };
 
   return (
-    <Form onSubmit={handleSubmit(submit)}>
-      <FormLabel>
+    <form onSubmit={handleSubmit(submit)}>
+      <label>
         Name
-        <FormInput {...register('name')} type="text" required />
-      </FormLabel>
-      <FormLabel>
+        <input {...register('name')} type="text" required />
+      </label>
+      <label>
         Number
-        <FormInput {...register('number')} type="tel" required />
-      </FormLabel>
-      <AddButton type="submit">Add contact</AddButton>
-    </Form>
+        <input {...register('number')} type="tel" required />
+      </label>
+      <button type="submit">Add contact</button>
+    </form>
   );
 }

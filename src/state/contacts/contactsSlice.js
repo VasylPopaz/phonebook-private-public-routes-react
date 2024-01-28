@@ -1,9 +1,14 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './operations';
+import { addContact, deleteContact, fetchContacts } from './contactsOperations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: { items: [], isLoading: false, error: null },
+  initialState: { items: [], filter: '', isLoading: false, error: null },
+  reducers: {
+    changeFilter: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
@@ -48,5 +53,5 @@ const contactsSlice = createSlice({
       );
   },
 });
-
-export const contactReducer = contactsSlice.reducer;
+export const { changeFilter } = contactsSlice.actions;
+export const contactsReducer = contactsSlice.reducer;
