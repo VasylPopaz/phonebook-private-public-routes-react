@@ -1,9 +1,17 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './contactsOperations';
+import {
+  addContact,
+  deleteContact,
+  fetchContacts,
+  updateContact,
+} from './contactsOperations';
+import { logOut } from 'state';
+
+const initialState = { items: [], filter: '', isLoading: false, error: null };
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: { items: [], filter: '', isLoading: false, error: null },
+  initialState,
   reducers: {
     changeFilter: (state, action) => {
       state.filter = action.payload;
@@ -19,6 +27,17 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(item => item.id !== action.payload.id);
+      })
+      .addCase(updateContact.fulfilled, (state, action) => {
+        state.items = state.items.map(item => {
+          if (item.id === action.payload.id) {
+            return action.payload;
+          }
+          return item;
+        });
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.items = [];
       })
       .addMatcher(
         isAnyOf(
@@ -37,7 +56,7 @@ const contactsSlice = createSlice({
           addContact.pending,
           deleteContact.pending
         ),
-        (state, action) => {
+        state => {
           state.isLoading = true;
         }
       )
@@ -47,7 +66,7 @@ const contactsSlice = createSlice({
           addContact.fulfilled,
           deleteContact.fulfilled
         ),
-        (state, action) => {
+        state => {
           state.isLoading = false;
         }
       );

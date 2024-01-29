@@ -1,12 +1,14 @@
-import { AuthNav } from 'components/AuthNav/AuthNav';
-import { Navigation } from 'components/Navigation/Navigation';
-import { UserMenu } from 'components/UserMenu/UserMenu';
+import { AuthNav, Navigation, UserMenu } from 'components';
 import { useAuth } from 'hooks/useAuth';
+
 export const AppBar = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <header className="flex justify-between border-b-4 border-solid border-black">
+    <header
+      className="py-4 px-8
+    gap-2 flex justify-between items-center border-b-4 border-solid border-black bg-violet-500 text-white text-xl"
+    >
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>

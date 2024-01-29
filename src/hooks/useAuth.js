@@ -3,16 +3,19 @@ import {
   selectUserName,
   selectIsLoggedIn,
   selectIsRefreshing,
-} from 'state/auth/authSelectors';
+  selectAuthError,
+} from 'state';
 
 export const useAuth = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
   const user = useSelector(selectUserName);
+  const error = useSelector(selectAuthError);
 
   return {
     isLoggedIn,
     isRefreshing,
     user,
+    error,
   };
 };

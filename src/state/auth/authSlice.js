@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { logIn, logOut, refreshCurrentUser, signUp } from './authOperations';
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -13,31 +14,30 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(signUp.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null };
-        state.token = null;
-        state.isLoggedIn = false;
+      .addCase(logOut.fulfilled, () => {
+        return initialState;
       })
       .addCase(refreshCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshCurrentUser.pending, (state, action) => {
+      .addCase(refreshCurrentUser.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(refreshCurrentUser.rejected, (state, action) => {
+      .addCase(refreshCurrentUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addMatcher(
+        isAnyOf(signUp.fulfilled, logIn.fulfilled),
+        (state, action) => {
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+          state.isLoggedIn = true;
+        }
+      )
+      .addMatcher(isAnyOf(signUp.rejected, logIn.rejected), (state, action) => {
+        state.error = action.payload;
       });
   },
 });
