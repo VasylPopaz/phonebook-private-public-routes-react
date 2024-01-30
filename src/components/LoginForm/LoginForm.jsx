@@ -55,7 +55,7 @@ export const LoginForm = () => {
               minLength={7}
             />
             <div className="form-control mt-6">
-              <button className="btn bg-violet-400 hover:bg-violet-700 hover:text-white">
+              <button className="btn text-black bg-violet-400 hover:bg-violet-700 hover:text-white">
                 Log in
               </button>
             </div>

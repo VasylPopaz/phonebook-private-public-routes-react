@@ -14,13 +14,14 @@ export const Navigation = () => {
             Home
           </NavLink>
         </li>
-        <li>
-          {isLoggedIn && (
+
+        {isLoggedIn && (
+          <li>
             <NavLink className=" nav-link " to={'contacts'}>
               Contacts
             </NavLink>
-          )}
-        </li>
+          </li>
+        )}
       </ul>
     </nav>
   );

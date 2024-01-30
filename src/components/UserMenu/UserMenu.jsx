@@ -14,12 +14,12 @@ export const UserMenu = () => {
   };
 
   return (
-    <div className="flex gap-4 items-center sm:flex-col-reverse sm:items-end">
+    <div className="flex gap-4 items-center sm:flex-col sm:items-end ">
       <p>
         Welcome , <span className="font-bold">{user}</span>
       </p>
       <button
-        className="text-white  bg-violet-400 hover:text-violet-950  border-2 border-violet-900 rounded-md p-1"
+        className="text-white text-lg bg-violet-400 hover:text-violet-950  border-2 border-violet-900 rounded-md p-1"
         type="button"
         onClick={handleLogOutClick}
       >
