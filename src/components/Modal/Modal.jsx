@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+//
 import { EditContactForm } from 'components';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -9,10 +10,11 @@ export const Modal = ({ item = null, close, isEdit = false }) => {
     const handleEscPress = event => {
       if (event.code === 'Escape') close();
     };
-    window.addEventListener('keydown', handleEscPress);
+
+    document.addEventListener('keydown', handleEscPress);
 
     return () => {
-      window.removeEventListener('keydown', handleEscPress);
+      document.removeEventListener('keydown', handleEscPress);
     };
   }, [close]);
 

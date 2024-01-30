@@ -1,9 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
+//
+import { Loader, SharedLayout } from 'components';
+import NotFound from 'pages/NotFound';
+//
 import { PrivateRoute, PublicRoute } from 'routes';
 import { refreshCurrentUser } from 'state';
-import { SharedLayout } from 'components';
+import { useAuth } from 'hooks';
 
 const Home = lazy(() => import('pages/Home'));
 const Register = lazy(() => import('pages/Register'));
@@ -11,12 +15,16 @@ const Login = lazy(() => import('pages/Login'));
 const Contacts = lazy(() => import('pages/Contacts'));
 
 export function App() {
+  const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
@@ -36,6 +44,7 @@ export function App() {
             <PrivateRoute redirectTo="/login" component={<Contacts />} />
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

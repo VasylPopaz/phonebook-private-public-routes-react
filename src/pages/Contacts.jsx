@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ContactsList, Filter } from 'components';
-import { fetchContacts, selectIsLoading } from 'state';
-import { Loader } from 'components';
+import { useDispatch } from 'react-redux';
+//
+import { ContactsList, Filter, Loader } from 'components';
+//
+import { fetchContacts } from 'state';
+import { useContacts } from 'hooks';
 
 const Contacts = () => {
-  const isLoading = useSelector(selectIsLoading);
+  const { isLoading } = useContacts();
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());

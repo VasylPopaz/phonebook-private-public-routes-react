@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+//
 import { logIn, logOut, refreshCurrentUser, signUp } from './authOperations';
 
 const initialState = {
@@ -36,9 +37,12 @@ const authSlice = createSlice({
           state.isLoggedIn = true;
         }
       )
-      .addMatcher(isAnyOf(signUp.rejected, logIn.rejected), (state, action) => {
-        state.error = action.payload;
-      });
+      .addMatcher(
+        isAnyOf(signUp.rejected, logIn.rejected, logOut.rejected),
+        (state, action) => {
+          state.error = action.payload;
+        }
+      );
   },
 });
 

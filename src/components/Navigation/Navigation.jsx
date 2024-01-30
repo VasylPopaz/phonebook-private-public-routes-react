@@ -1,12 +1,27 @@
 import { NavLink } from 'react-router-dom';
-import { useAuth } from 'hooks/useAuth';
+//
+import { useAuth } from 'hooks';
 
 export const Navigation = () => {
   const { isLoggedIn } = useAuth();
+
   return (
-    <div className="flex gap-4">
-      <NavLink to={'/'}>Home</NavLink>
-      {isLoggedIn && <NavLink to={'contacts'}>Contacts</NavLink>}
-    </div>
+    <nav>
+      <ul className="flex gap-4 sm:flex-col  sm:text-center ">
+        <li>
+          {' '}
+          <NavLink className=" nav-link " to={'/'}>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          {isLoggedIn && (
+            <NavLink className=" nav-link " to={'contacts'}>
+              Contacts
+            </NavLink>
+          )}
+        </li>
+      </ul>
+    </nav>
   );
 };

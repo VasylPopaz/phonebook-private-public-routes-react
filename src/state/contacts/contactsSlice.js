@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+//
 import {
   addContact,
   deleteContact,
@@ -7,7 +8,12 @@ import {
 } from './contactsOperations';
 import { logOut } from 'state';
 
-const initialState = { items: [], filter: '', isLoading: false, error: null };
+const initialState = {
+  items: [],
+  filter: '',
+  isLoading: false,
+  error: null,
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -43,7 +49,8 @@ const contactsSlice = createSlice({
         isAnyOf(
           fetchContacts.rejected,
           addContact.rejected,
-          deleteContact.rejected
+          deleteContact.rejected,
+          updateContact.rejected
         ),
         (state, action) => {
           state.error = action.payload;
@@ -54,7 +61,8 @@ const contactsSlice = createSlice({
         isAnyOf(
           fetchContacts.pending,
           addContact.pending,
-          deleteContact.pending
+          deleteContact.pending,
+          updateContact.pending
         ),
         state => {
           state.isLoading = true;
@@ -64,7 +72,8 @@ const contactsSlice = createSlice({
         isAnyOf(
           fetchContacts.fulfilled,
           addContact.fulfilled,
-          deleteContact.fulfilled
+          deleteContact.fulfilled,
+          updateContact.fulfilled
         ),
         state => {
           state.isLoading = false;

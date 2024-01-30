@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { changeFilter } from 'state/contacts/contactsSlice';
+//
+import { changeFilter } from 'state';
 
 export const Filter = () => {
   const dispatch = useDispatch();
