@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-08-phonebook/static/css/main.5a221f55.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.2a3c098f.js",
-    "static/js/915.73267a76.chunk.js": "/goit-react-hw-08-phonebook/static/js/915.73267a76.chunk.js",
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.ad8ba54a.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.77309ed6.js",
+    "static/js/915.f7ca3e69.chunk.js": "/goit-react-hw-08-phonebook/static/js/915.f7ca3e69.chunk.js",
     "static/js/285.ecb86887.chunk.js": "/goit-react-hw-08-phonebook/static/js/285.ecb86887.chunk.js",
     "static/js/38.c1be456e.chunk.js": "/goit-react-hw-08-phonebook/static/js/38.c1be456e.chunk.js",
     "static/js/910.5d13fa99.chunk.js": "/goit-react-hw-08-phonebook/static/js/910.5d13fa99.chunk.js",
     "static/media/bg-hero.jpg": "/goit-react-hw-08-phonebook/static/media/bg-hero.50fbf10e107e7bea1d26.jpg",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
-    "main.5a221f55.css.map": "/goit-react-hw-08-phonebook/static/css/main.5a221f55.css.map",
-    "main.2a3c098f.js.map": "/goit-react-hw-08-phonebook/static/js/main.2a3c098f.js.map",
-    "915.73267a76.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/915.73267a76.chunk.js.map",
+    "main.ad8ba54a.css.map": "/goit-react-hw-08-phonebook/static/css/main.ad8ba54a.css.map",
+    "main.77309ed6.js.map": "/goit-react-hw-08-phonebook/static/js/main.77309ed6.js.map",
+    "915.f7ca3e69.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/915.f7ca3e69.chunk.js.map",
     "285.ecb86887.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/285.ecb86887.chunk.js.map",
     "38.c1be456e.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/38.c1be456e.chunk.js.map",
     "910.5d13fa99.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/910.5d13fa99.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a221f55.css",
-    "static/js/main.2a3c098f.js"
+    "static/css/main.ad8ba54a.css",
+    "static/js/main.77309ed6.js"
   ]
 }
