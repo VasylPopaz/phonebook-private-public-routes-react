@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { IoLogOut } from 'react-icons/io5';
 //
 import { useAuth } from 'hooks';
 import { logOut } from 'state';
@@ -19,11 +20,12 @@ export const UserMenu = () => {
         Welcome , <span className="font-bold">{user}</span>
       </p>
       <button
-        className="text-white text-lg bg-violet-400 hover:text-violet-950  border-2 border-violet-900 rounded-md p-1"
+        className="logout-btn relative  p-[1px] flex justify-between items-center w-[100px] text-violet-950  text-xl hover:text-white "
         type="button"
         onClick={handleLogOutClick}
       >
         Logout
+        {<IoLogOut size={25} />}
       </button>
     </div>
   );

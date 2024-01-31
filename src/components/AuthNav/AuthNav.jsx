@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export const AuthNav = () => {
   return (
-    <ul className="flex gap-4 text-violet-900">
+    <ul className="flex gap-4 ">
       <li>
         <NavLink className="nav-link" to={'register'}>
           Sign up

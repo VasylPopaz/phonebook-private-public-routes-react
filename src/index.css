@@ -14,10 +14,10 @@ button {
 }
 
 .nav-link {
-  position: relative;
-  font-weight: 700;
+  @apply relative font-bold  text-violet-900 pb-[1px];
 }
-.nav-link::after {
+.nav-link::after,
+.logout-btn::after {
   content: '';
   position: absolute;
   left: 0;
@@ -29,10 +29,12 @@ button {
   transform-origin: right;
   transform: scaleX(0);
 }
-.nav-link:hover::after {
+.nav-link:hover::after,
+.logout-btn:hover::after {
   transform-origin: left;
   transform: scaleX(1);
 }
+
 .active {
   @apply text-white;
 }

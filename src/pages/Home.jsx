@@ -5,9 +5,9 @@ import heroImg from '../images/bg-hero.jpg';
 const Home = () => {
   return (
     <div
-      className="hero min-h-screen"
+      className="hero min-h-screen bg-no-repeat bg-center bg-cover"
       style={{
-        backgroundImage: `url(${heroImg})`,
+        backgroundImage: `url(${heroImg}) `,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>

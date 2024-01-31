@@ -21,7 +21,7 @@ export const ContactsList = () => {
         </h2>
       ) : null}
 
-      <div className="  max-h-[495px] overflow-auto">
+      <div className="  px-2 max-h-[495px] overflow-auto">
         <ul className=" flex flex-col gap-2">
           {filteredContacts.map(item => {
             return <ContactsListItem key={item.id} item={item} />;
