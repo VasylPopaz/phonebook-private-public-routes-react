@@ -4,7 +4,7 @@ const NotFound = () => {
   return (
     <>
       <Link
-        to="//"
+        to="/"
         className="inline-block p-1 ml-4 mt-4 text-lg text-violet-950 bg-violet-400 hover:text-white hover:border-white hover:bg-violet-700 border-2 border-violet-900 rounded-md "
       >
         Go home

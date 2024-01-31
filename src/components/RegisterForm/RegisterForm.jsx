@@ -15,7 +15,7 @@ export const RegisterForm = () => {
     dispatch(signUp(data))
       .unwrap()
       .then(() => {
-        toast.success(`Thank you for registering!`);
+        toast.success(`Thank you for registering on our website!`);
         reset();
       })
       .catch(error => {
@@ -62,13 +62,13 @@ export const RegisterForm = () => {
                 Sign up
               </button>
             </div>
-            <p>
-              Already have an account ? Login{' '}
+            <p className=" text-center">
+              Have an account ?{' '}
               <Link
                 to={'/login'}
-                className="underline text-violet-400 hover:text-violet-700"
+                className=" text-violet-400 hover:text-violet-700 hover:underline"
               >
-                here
+                Log in
               </Link>{' '}
             </p>
           </form>

@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 //
 import {
   selectContacts,
-  selectError,
   selectFilter,
   selectFilteredContacts,
   selectIsLoading,
@@ -11,7 +10,6 @@ import {
 export const useContacts = () => {
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
   const filter = useSelector(selectFilter);
   const filteredContacts = useSelector(selectFilteredContacts);
 
@@ -19,7 +17,6 @@ export const useContacts = () => {
     contacts,
     isLoading,
     filter,
-    error,
     filteredContacts,
   };
 };

@@ -8,10 +8,14 @@ import { logOut } from 'state';
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
+
   const handleLogOutClick = () => {
-    dispatch(logOut()).catch(() =>
-      toast.error('Sorry, something went wrong. Please try again.')
-    );
+    dispatch(logOut())
+      .unwrap()
+      .then(() => {})
+      .catch(error =>
+        toast.error('Sorry, something went wrong. Please try again.')
+      );
   };
 
   return (
@@ -24,7 +28,7 @@ export const UserMenu = () => {
         type="button"
         onClick={handleLogOutClick}
       >
-        Logout
+        Log out
         {<IoLogOut size={25} />}
       </button>
     </div>

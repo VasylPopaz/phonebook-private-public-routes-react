@@ -12,7 +12,6 @@ const initialState = {
   items: [],
   filter: '',
   isLoading: false,
-  error: null,
 };
 
 const contactsSlice = createSlice({
@@ -42,8 +41,8 @@ const contactsSlice = createSlice({
           return item;
         });
       })
-      .addCase(logOut.fulfilled, state => {
-        state.items = [];
+      .addCase(logOut.fulfilled, () => {
+        return initialState;
       })
       .addMatcher(
         isAnyOf(
@@ -52,8 +51,7 @@ const contactsSlice = createSlice({
           deleteContact.rejected,
           updateContact.rejected
         ),
-        (state, action) => {
-          state.error = action.payload;
+        state => {
           state.isLoading = false;
         }
       )

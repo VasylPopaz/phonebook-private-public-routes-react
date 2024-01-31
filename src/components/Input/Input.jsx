@@ -7,23 +7,28 @@ export const Input = ({
   label,
   type = 'text',
   minLength = 0,
-  pr = 0,
+  defaultValue = '',
 }) => {
   const [showPass, setShowPass] = useState(false);
   const paddRight = type === 'password' ? '40px' : '12px';
 
   return (
     <div className="form-control">
-      <label className="label">{label}</label>
+      <label className="label" htmlFor={name}>
+        {label}
+      </label>
       <div className=" relative ">
         <input
+          id={name}
           {...register(name)}
           type={showPass ? 'text' : type}
           placeholder="..."
+          defaultValue={defaultValue}
           className="form-input"
           style={{ paddingRight: paddRight }}
-          required
           minLength={minLength}
+          autoComplete="on"
+          required
         />
         {type === 'password' && (
           <button type="button" onClick={() => setShowPass(!showPass)}>

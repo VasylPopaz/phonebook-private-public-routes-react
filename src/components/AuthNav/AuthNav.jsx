@@ -10,7 +10,7 @@ export const AuthNav = () => {
       </li>
       <li>
         <NavLink className="nav-link" to={'login'}>
-          Login
+          Sign in
         </NavLink>
       </li>
     </ul>

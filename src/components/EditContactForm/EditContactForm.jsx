@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 //
 import { useContacts } from 'hooks';
 import { addContact, updateContact } from 'state';
+import { Input } from 'components';
 
 export function EditContactForm({ item, close, isEdit }) {
   const { contacts } = useContacts();
@@ -14,7 +15,7 @@ export function EditContactForm({ item, close, isEdit }) {
 
   const submit = data => {
     if (isEdit) {
-      if (item.name !== data.name && item.name !== data.number) {
+      if (item.name !== data.name || item.number !== data.number) {
         dispatch(updateContact({ id: item.id, body: data }))
           .unwrap()
           .then(() => {
@@ -56,28 +57,20 @@ export function EditContactForm({ item, close, isEdit }) {
           onSubmit={handleSubmit(submit)}
           className="card-body text-lg font-bold bg-white text-black "
         >
-          <div className="form-control">
-            <label className="label">Name</label>
-            <input
-              {...register('name')}
-              type="text"
-              placeholder="..."
-              defaultValue={item?.name}
-              className="form-input"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">Number</label>
-            <input
-              {...register('number')}
-              type="name"
-              placeholder="..."
-              defaultValue={item?.number}
-              className=" form-input"
-              required
-            />
-          </div>
+          <Input
+            register={register}
+            name="name"
+            label="Name"
+            type="text"
+            defaultValue={item?.name}
+          />
+          <Input
+            register={register}
+            name="number"
+            label="Number"
+            type="tel"
+            defaultValue={item?.number}
+          />
           <div className="flex justify-between">
             <button
               type="submit"
